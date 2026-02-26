@@ -3,11 +3,13 @@ using UnityEngine.InputSystem;
 
 public class Enemy : MonoBehaviour
 {
+    private bool active;
     public float healthPoints;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        active = true;
         healthPoints = 1f;
     }
 
@@ -17,7 +19,9 @@ public class Enemy : MonoBehaviour
         //taking damage mechanic
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            healthPoints -= .03f;
+            if (active) {
+                healthPoints -= .03f;
+            }
         }
     }
 }
