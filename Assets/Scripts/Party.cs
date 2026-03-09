@@ -5,6 +5,9 @@ public class Party : MonoBehaviour
     private bool active;
 
     public float healthPoints;
+    public float damageRate = .0001f;
+    public GameObject opponent;
+    public GameObject gameOverMessage;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,7 +21,15 @@ public class Party : MonoBehaviour
     {
         if (active)
         {
-            healthPoints -= .01f;
+            healthPoints -= damageRate;
+        }
+        if (healthPoints <= 0 || opponent.GetComponent<Enemy>().healthPoints <= 0)
+        {
+            active = false;
+            if (healthPoints <= 0)
+            {
+                gameOverMessage.SetActive(true);
+            }
         }
     }
 }
