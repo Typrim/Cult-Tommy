@@ -8,6 +8,7 @@ public class Party : MonoBehaviour
     public float damageRate = .0001f;
     public GameObject opponent;
     public GameObject gameOverMessage;
+    public AudioSource gameOverTrack;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,6 +30,8 @@ public class Party : MonoBehaviour
             if (healthPoints <= 0)
             {
                 gameOverMessage.SetActive(true);
+                GameObject.Find("Main Camera").GetComponent<AudioSource>().Stop();
+                gameOverTrack.Play();
             }
         }
     }

@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     public float healthPoints;
     public GameObject opponent;
     public GameObject victoryMessage;
+    public AudioSource victoryTrack;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,6 +31,8 @@ public class Enemy : MonoBehaviour
                 if (healthPoints <= 0)
                 {
                     victoryMessage.SetActive(true);
+                    GameObject.Find("Main Camera").GetComponent<AudioSource>().Stop();
+                    victoryTrack.Play();
                 }
             }
         }
